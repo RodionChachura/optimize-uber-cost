@@ -6,6 +6,6 @@ export default createReducer(
     [to]: (state, page) => ({ ...state, page })
   },
   {
-    page: 'Token'
+    page: localStorage.getItem('apiKey') ? 'Map' : 'Token'
   }
 )
