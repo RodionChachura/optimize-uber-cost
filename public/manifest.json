@@ -1,0 +1,8 @@
+{
+  "short_name": "OptimizeUberRide",
+  "name": "OptimizeUberRide",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
