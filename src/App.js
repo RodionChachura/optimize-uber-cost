@@ -1,5 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 
 import './utils/array-extensions'
 
@@ -9,9 +11,11 @@ import Root from './layouts/main'
 import { sagaMiddleware } from './middleware'
 
 const App = () => (
-  <Provider store={store}>
-    <Root />
-  </Provider>
+  <MuiThemeProvider>
+    <Provider store={store}>
+      <Root />
+    </Provider>
+  </MuiThemeProvider>
 )
 
 export default App
