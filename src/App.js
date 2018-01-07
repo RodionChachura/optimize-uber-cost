@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
+import dotenv from 'dotenv'
 import './utils/array-extensions'
 
 import store from './store'
@@ -19,4 +19,5 @@ const App = () => (
 
 export default App
 
+dotenv.config()
 sagaMiddleware.run(saga)

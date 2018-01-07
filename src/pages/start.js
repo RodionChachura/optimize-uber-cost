@@ -18,9 +18,12 @@ export default connectTo(
     apiKey,
     onUpdateApiKeyClick
   }) => {
-    // if (!startLocation) {
-    //   navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude }}) => setStartLocation({ latitude, longitude }))
-    // }
+    if (!startLocation) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords: { latitude, longitude } }) =>
+          setStartLocation({ latitude, longitude })
+      )
+    }
 
     return (
       <div className="start page">

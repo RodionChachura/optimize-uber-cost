@@ -10,3 +10,6 @@ export const setKeyInputErrorText = createAction()
 
 export const apiKeyValidated = createAction()
 export const onUpdateApiKeyClick = createAction()
+
+export const onMapUpdate = createAction('onMapUpdate')
+export const onWindowChange = createAction('onWindowChange')
