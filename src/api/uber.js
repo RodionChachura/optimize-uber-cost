@@ -7,8 +7,8 @@ export const getEstimation = (apiKey, startLat, startLong, endLat, endLong) => {
     mode: 'cors',
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       start_latitude: startLat,

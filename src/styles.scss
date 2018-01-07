@@ -29,7 +29,7 @@ html {
   display: flex;
 }
 
-.token {
+.start {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -37,4 +37,8 @@ html {
   h1 {
     margin: 20px;
   }
+}
+
+button {
+  margin: 12px;
 }

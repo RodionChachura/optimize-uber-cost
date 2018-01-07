@@ -12,4 +12,4 @@ const Root = ({ page }) => {
   )
 }
 
-export default connectTo(state => ({ page: state.navigation.page }), {}, Root)
+export default connectTo(state => state, {}, Root)
