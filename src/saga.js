@@ -6,12 +6,11 @@ import {
   apiKeyValidated
 } from './actions'
 import { getEstimation } from './api/uber'
-
-const TESTING_ESTIMATION_DATA = [53.9147807, 27.5481173, 53.8893322, 27.4151778]
+import { MOCK_LOCATIONS } from './constants/map'
 
 export function* onKeyInputChangeSaga({ payload }) {
   try {
-    yield call(getEstimation, payload, ...TESTING_ESTIMATION_DATA)
+    yield call(getEstimation, payload, ...MOCK_LOCATIONS)
     yield put(apiKeyValidated(payload))
   } catch (_) {
     yield put(setKeyInputErrorText('Invalid API key'))

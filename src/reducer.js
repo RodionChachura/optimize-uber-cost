@@ -9,7 +9,7 @@ export default createReducer(
       ...state,
       startLocation
     }),
-    [a.setStartLocation]: (state, endLocation) => ({ ...state, endLocation }),
+    [a.setEndLocation]: (state, endLocation) => ({ ...state, endLocation }),
     [a.setKeyInputErrorText]: (state, keyInputErrorText) => ({
       ...state,
       keyInputErrorText
@@ -38,7 +38,7 @@ export default createReducer(
     apiKey: localStorage.getItem('apiKey'),
 
     height: window.innerHeight,
-    width: window.innerWidth,
+    width: window.innerWidth * 0.7,
     zoom: MAP_OPTIONS.zoom,
     latitude: MAP_OPTIONS.latitude,
     longitude: MAP_OPTIONS.longitude
