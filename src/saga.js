@@ -32,8 +32,8 @@ export function* lookForCostSaga() {
     )
     console.log(data)
     yield put(rideValidated())
-  } catch (_) {
-    yield put(setKeyInputErrorText('Invalid Ride'))
+  } catch ({ error }) {
+    yield put(setKeyInputErrorText(error))
   }
 }
 
