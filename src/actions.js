@@ -11,5 +11,15 @@ export const setKeyInputErrorText = createAction()
 export const apiKeyValidated = createAction()
 export const onUpdateApiKeyClick = createAction()
 
-export const onMapUpdate = createAction('onMapUpdate')
-export const onWindowChange = createAction('onWindowChange')
+export const onMapUpdate = createAction()
+export const onWindowChange = createAction()
+
+export const searchStartLocation = createAction()
+export const searchEndLocation = createAction()
+
+export const useAsStartLocation = createAction()
+export const useAsEndLocation = createAction()
+
+export const lookForCost = createAction()
+export const setRideError = createAction()
+export const rideValidated = createAction()

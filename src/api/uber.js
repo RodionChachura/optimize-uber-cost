@@ -1,5 +1,3 @@
-import 'whatwg-fetch'
-
 const ESTIMATION_API = 'https://api.uber.com/v1.2/requests/estimate'
 
 export const getEstimation = (apiKey, startLat, startLong, endLat, endLong) => {

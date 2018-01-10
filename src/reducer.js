@@ -16,7 +16,7 @@ export default createReducer(
     }),
     [a.apiKeyValidated]: (state, apiKey) => {
       localStorage.setItem('apiKey', apiKey)
-      return { ...state, apiKey }
+      return { ...state, apiKey, keyInputErrorText: '' }
     },
     [a.onUpdateApiKeyClick]: state => {
       localStorage.removeItem('apiKey')
@@ -28,14 +28,46 @@ export default createReducer(
       longitude,
       latitude,
       zoom
+    }),
+    [a.useAsStartLocation]: state => ({
+      ...state,
+      startLocation: { latitude: state.latitude, longitude: state.longitude },
+      rideErrorText: ''
+    }),
+    [a.useAsEndLocation]: state => ({
+      ...state,
+      endLocation: { latitude: state.latitude, longitude: state.longitude },
+      rideErrorText: ''
+    }),
+    [a.searchStartLocation]: state => ({
+      ...state,
+      startLocation: undefined,
+      startLocationGeoSearch: false
+    }),
+    [a.searchEndLocation]: state => ({
+      ...state,
+      endLocation: undefined
+    }),
+    [a.rideValidated]: state => {
+      return {
+        ...state,
+        rideErrorText: ''
+      }
+    },
+    [a.setRideError]: (state, rideErrorText) => ({
+      ...state,
+      rideErrorText
     })
   },
   {
     page: 'Start',
     keyInputErrorText: '',
+    rideErrorText: '',
     startLocation: undefined,
     endLocation: undefined,
+
     apiKey: localStorage.getItem('apiKey'),
+    startLocationGeoSearch: true,
 
     height: window.innerHeight,
     width: window.innerWidth * 0.7,

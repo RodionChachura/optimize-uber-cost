@@ -31,16 +31,15 @@ html {
 
 .start {
   display: grid;
-  // grid-auto-columns: 50%;
   grid-template-columns: 70% 30%;
   
   .one-half {
     grid-column: 2;
     grid-row: 1;
+    margin: 12px;
     display: flex;
     flex-direction: column;
     align-content: center;
-    align-items: center;
     h1 {
       margin: 20px;
     }
@@ -53,6 +52,13 @@ html {
 
 }
 
-button {
+.margin-button {
   margin: 12px;
+}
+.margin-input {
+  margin: 12px;
+}
+
+.error {
+  color: red;
 }

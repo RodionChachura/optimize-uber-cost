@@ -1,12 +1,7 @@
 import React from 'react'
 import ReactMapGL, { Marker } from 'react-map-gl'
 
-import {
-  MAP_OPTIONS,
-  MOCK_START_LOCATION,
-  START_LOCATION_OFFSET
-} from '../constants/map'
-import { addVectorToPointOnMap } from '../utils/map'
+import { MAP_OPTIONS } from '../constants/map'
 
 export default class Map extends React.Component {
   render() {
@@ -20,10 +15,7 @@ export default class Map extends React.Component {
       onMapUpdate,
 
       startLocation,
-      endLocation,
-
-      setStartLocation,
-      setEndLocation
+      endLocation
     } = this.props
     const mapProps = {
       ...MAP_OPTIONS,
@@ -34,18 +26,18 @@ export default class Map extends React.Component {
       longitude,
       onViewportChange: onMapUpdate
     }
-    const startCoordinates = startLocation || MOCK_START_LOCATION
-    const endCoordinates =
-      endLocation ||
-      addVectorToPointOnMap(startCoordinates, START_LOCATION_OFFSET)
+    const startCoordinates = startLocation || { latitude, longitude }
+    const endCoordinates = endLocation || { latitude, longitude }
     return (
       <ReactMapGL className="map-component" {...mapProps} ref="reactMap">
         <Marker {...startCoordinates} offsetLeft={-20} offsetTop={-10}>
           <i className="fa fa-map-marker fa-4x fa-inverse" aria-hidden="true" />
         </Marker>
-        <Marker {...endCoordinates} offsetLeft={-20} offsetTop={-10}>
-          <i className="fa fa-map-marker fa-4x" aria-hidden="true" />
-        </Marker>
+        {startLocation ? (
+          <Marker {...endCoordinates} offsetLeft={-20} offsetTop={-10}>
+            <i className="fa fa-map-marker fa-4x" aria-hidden="true" />
+          </Marker>
+        ) : null}
       </ReactMapGL>
     )
   }
