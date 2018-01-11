@@ -29,9 +29,7 @@ export default class Map extends React.Component {
     }
     const startCoordinates = startLocation || { latitude, longitude }
     const endCoordinates = endLocation || { latitude, longitude }
-    console.log(startLocation, endLocation)
     if (startLocation && endLocation) {
-      console.log('here')
       const locations = [startLocation, endLocation]
       const sortedByLat = _.sortBy(locations, 'latitude')
       const sortedByLong = _.sortBy(locations, 'longitude')

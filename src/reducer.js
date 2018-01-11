@@ -54,10 +54,15 @@ export default createReducer(
       ...state,
       endLocation: undefined
     }),
-    [a.rideValidated]: state => {
+    [a.rideValidated]: (state, data) => {
+      const { fare: { currency_code, value } } = data
+
       return {
         ...state,
-        rideErrorText: ''
+        rideErrorText: '',
+        currency: currency_code,
+        prices: [value],
+        page: 'Map'
       }
     },
     [a.setRideError]: (state, rideErrorText) => ({
@@ -67,6 +72,14 @@ export default createReducer(
     [a.onWaitingSliderChange]: (state, waitingTime) => {
       localStorage.setItem('waitingTime', waitingTime)
       return { ...state, waitingTime }
+    },
+    [a.newEstimationReceived]: (state, data) => {
+      const { fare: { value } } = data
+      console.log(value)
+      return {
+        ...state,
+        prices: [...state.prices, value]
+      }
     }
   },
   {
@@ -86,6 +99,8 @@ export default createReducer(
     width: window.innerWidth * 0.7,
     zoom: MAP_OPTIONS.zoom,
     latitude: MAP_OPTIONS.latitude,
-    longitude: MAP_OPTIONS.longitude
+    longitude: MAP_OPTIONS.longitude,
+    currency: '',
+    prices: []
   }
 )

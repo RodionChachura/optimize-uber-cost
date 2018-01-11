@@ -5,10 +5,13 @@ import {
   setKeyInputErrorText,
   apiKeyValidated,
   lookForCost,
-  rideValidated
+  rideValidated,
+  setRideError,
+  newEstimationReceived
 } from './actions'
 import { getEstimation } from './api/uber'
 import { MOCK_LOCATIONS } from './constants/map'
+import { MAX_REQUEST_IN_HOUR } from './constants/uber'
 
 export function* onKeyInputChangeSaga({ payload }) {
   try {
@@ -19,21 +22,44 @@ export function* onKeyInputChangeSaga({ payload }) {
   }
 }
 
+function delay(duration) {
+  const promise = new Promise(resolve => {
+    setTimeout(() => resolve(true), duration)
+  })
+  return promise
+}
+
+function* getCost() {
+  const { startLocation, endLocation, apiKey } = yield select()
+  return yield call(
+    getEstimation,
+    apiKey,
+    startLocation.latitude,
+    startLocation.longitude,
+    endLocation.latitude,
+    endLocation.longitude
+  )
+}
+
 export function* lookForCostSaga() {
   try {
-    const { startLocation, endLocation, apiKey } = yield select()
-    const data = yield call(
-      getEstimation,
-      apiKey,
-      startLocation.latitude,
-      startLocation.longitude,
-      endLocation.latitude,
-      endLocation.longitude
-    )
-    console.log(data)
-    yield put(rideValidated())
+    const data = yield* getCost()
+    yield put(rideValidated(data))
+
+    function* polling() {
+      const { waitingTime, page } = yield select()
+      if (page !== 'Map') return
+
+      const requestFrequency =
+        Math.round(60 / (MAX_REQUEST_IN_HOUR / waitingTime)) * 1000
+      const newData = yield* getCost()
+      yield put(newEstimationReceived(newData))
+      yield call(delay, requestFrequency)
+      yield* polling()
+    }
+    yield* polling()
   } catch ({ error }) {
-    yield put(setKeyInputErrorText(error))
+    yield put(setRideError(error))
   }
 }
 
