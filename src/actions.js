@@ -23,3 +23,5 @@ export const useAsEndLocation = createAction()
 export const lookForCost = createAction()
 export const setRideError = createAction()
 export const rideValidated = createAction()
+
+export const onWaitingSliderChange = createAction()

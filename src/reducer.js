@@ -5,11 +5,6 @@ import { MAP_OPTIONS } from './constants/map'
 export default createReducer(
   {
     [a.to]: (state, page) => ({ ...state, page }),
-    [a.setStartLocation]: (state, startLocation) => ({
-      ...state,
-      startLocation
-    }),
-    [a.setEndLocation]: (state, endLocation) => ({ ...state, endLocation }),
     [a.setKeyInputErrorText]: (state, keyInputErrorText) => ({
       ...state,
       keyInputErrorText
@@ -29,16 +24,27 @@ export default createReducer(
       latitude,
       zoom
     }),
+    [a.setStartLocation]: (state, startLocation) => ({
+      ...state,
+      startLocation
+    }),
     [a.useAsStartLocation]: state => ({
       ...state,
       startLocation: { latitude: state.latitude, longitude: state.longitude },
       rideErrorText: ''
     }),
-    [a.useAsEndLocation]: state => ({
-      ...state,
-      endLocation: { latitude: state.latitude, longitude: state.longitude },
-      rideErrorText: ''
-    }),
+    [a.useAsEndLocation]: state => {
+      const endLocation = {
+        latitude: state.latitude,
+        longitude: state.longitude
+      }
+      localStorage.setItem('endLocation', JSON.stringify(endLocation))
+      return {
+        ...state,
+        endLocation,
+        rideErrorText: ''
+      }
+    },
     [a.searchStartLocation]: state => ({
       ...state,
       startLocation: undefined,
@@ -57,16 +63,23 @@ export default createReducer(
     [a.setRideError]: (state, rideErrorText) => ({
       ...state,
       rideErrorText
-    })
+    }),
+    [a.onWaitingSliderChange]: (state, waitingTime) => {
+      localStorage.setItem('waitingTime', waitingTime)
+      return { ...state, waitingTime }
+    }
   },
   {
     page: 'Start',
     keyInputErrorText: '',
     rideErrorText: '',
     startLocation: undefined,
-    endLocation: undefined,
+    endLocation:
+      localStorage.getItem('endLocation') &&
+      JSON.parse(localStorage.getItem('endLocation')),
 
     apiKey: localStorage.getItem('apiKey'),
+    waitingTime: parseInt(localStorage.getItem('waitingTime'), 10) || 60,
     startLocationGeoSearch: true,
 
     height: window.innerHeight,

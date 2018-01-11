@@ -62,3 +62,10 @@ html {
 .error {
   color: red;
 }
+
+.slider-line {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+}

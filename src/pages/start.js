@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
 import Map from '../components/map'
+import WaitingTime from '../components/waitingTime'
 
 import { connectTo } from '../utils/generic'
 import * as actions from '../actions'
@@ -13,7 +14,6 @@ export default connectTo(
   ({
     onKeyInputChange,
     setStartLocation,
-    setEndLocation,
     startLocation,
     endLocation,
     keyInputErrorText,
@@ -36,7 +36,9 @@ export default connectTo(
     useAsEndLocation,
     startLocationGeoSearch,
     lookForCost,
-    rideErrorText
+    rideErrorText,
+    waitingTime,
+    onWaitingSliderChange
   }) => {
     const mapProps = {
       width,
@@ -49,10 +51,7 @@ export default connectTo(
       onWindowChange,
 
       startLocation,
-      endLocation,
-
-      setStartLocation,
-      setEndLocation
+      endLocation
     }
 
     if (!startLocation && startLocationGeoSearch) {
@@ -109,6 +108,9 @@ export default connectTo(
               label="Use As End Location"
               className="margin-button"
             />
+          ) : null}
+          {startLocation && endLocation ? (
+            <WaitingTime {...{ waitingTime, onWaitingSliderChange }} />
           ) : null}
           {startLocation && endLocation && apiKey && !rideErrorText ? (
             <RaisedButton
