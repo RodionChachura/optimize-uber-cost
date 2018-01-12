@@ -29,26 +29,7 @@ export default class Map extends React.Component {
     }
     const startCoordinates = startLocation || { latitude, longitude }
     const endCoordinates = endLocation || { latitude, longitude }
-    if (startLocation && endLocation) {
-      const locations = [startLocation, endLocation]
-      const sortedByLat = _.sortBy(locations, 'latitude')
-      const sortedByLong = _.sortBy(locations, 'longitude')
 
-      const maxLat = sortedByLat[sortedByLat.length - 1].latitude
-      const minLat = sortedByLat[0].latitude
-      const maxLong = sortedByLong[sortedByLong.length - 1].longitude
-      const minLong = sortedByLong[0].longitude
-      this.map.fitBounds([[minLong, minLat], [maxLong, maxLat]], {
-        padding: 40
-      })
-      this.map.on('moveend', () =>
-        onMapUpdate({
-          zoom: this.map.getZoom(),
-          longitude: this.map.getCenter().lng,
-          latitude: this.map.getCenter().lat
-        })
-      )
-    }
     return (
       <ReactMapGL className="map-component" {...mapProps} ref="reactMap">
         <Marker {...startCoordinates} offsetLeft={-20} offsetTop={-10}>
@@ -70,6 +51,29 @@ export default class Map extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.windowSizeChanged)
+  }
+  componentDidUpdate() {
+    const { onMapUpdate, startLocation, endLocation } = this.props
+    if (startLocation && endLocation && this.map) {
+      const locations = [startLocation, endLocation]
+      const sortedByLat = _.sortBy(locations, 'latitude')
+      const sortedByLong = _.sortBy(locations, 'longitude')
+
+      const maxLat = sortedByLat[sortedByLat.length - 1].latitude
+      const minLat = sortedByLat[0].latitude
+      const maxLong = sortedByLong[sortedByLong.length - 1].longitude
+      const minLong = sortedByLong[0].longitude
+      this.map.fitBounds([[minLong, minLat], [maxLong, maxLat]], {
+        padding: 40
+      })
+      this.map.on('moveend', () =>
+        onMapUpdate({
+          zoom: this.map.getZoom(),
+          longitude: this.map.getCenter().lng,
+          latitude: this.map.getCenter().lat
+        })
+      )
+    }
   }
 
   windowSizeChanged = () => {

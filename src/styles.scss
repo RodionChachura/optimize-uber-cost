@@ -69,3 +69,24 @@ html {
   align-items: stretch;
   justify-content: center;
 }
+
+.chart {
+  margin: 0 50px;
+  flex-direction: column;
+  .chart-navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100px;
+    align-items: center;
+
+    .price {
+      display: flex;
+      flex-direction: row;
+
+      p {
+        padding-right: 10px;
+      }
+    }
+  }
+}

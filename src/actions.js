@@ -27,3 +27,4 @@ export const rideValidated = createAction()
 export const onWaitingSliderChange = createAction()
 
 export const newEstimationReceived = createAction()
+export const toStart = createAction()

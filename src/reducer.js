@@ -62,7 +62,7 @@ export default createReducer(
         rideErrorText: '',
         currency: currency_code,
         prices: [value],
-        page: 'Map'
+        page: 'Chart'
       }
     },
     [a.setRideError]: (state, rideErrorText) => ({
@@ -75,12 +75,15 @@ export default createReducer(
     },
     [a.newEstimationReceived]: (state, data) => {
       const { fare: { value } } = data
-      console.log(value)
       return {
         ...state,
         prices: [...state.prices, value]
       }
-    }
+    },
+    [a.toStart]: state => ({
+      ...state,
+      page: 'Start'
+    })
   },
   {
     page: 'Start',

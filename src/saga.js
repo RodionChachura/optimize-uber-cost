@@ -48,7 +48,7 @@ export function* lookForCostSaga() {
 
     function* polling() {
       const { waitingTime, page } = yield select()
-      if (page !== 'Map') return
+      if (page !== 'Chart') return
 
       const requestFrequency =
         Math.round(60 / (MAX_REQUEST_IN_HOUR / waitingTime)) * 1000
