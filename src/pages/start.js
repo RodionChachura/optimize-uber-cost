@@ -38,7 +38,8 @@ export default connectTo(
     lookForCost,
     rideErrorText,
     waitingTime,
-    onWaitingSliderChange
+    onWaitingSliderChange,
+    showHowToGetKey
   }) => {
     const mapProps = {
       width,
@@ -72,12 +73,15 @@ export default connectTo(
               className="margin-button"
             />
           ) : (
-            <TextField
-              onChange={(_, value) => onKeyInputChange(value)}
-              hintText="Uber API Key"
-              errorText={keyInputErrorText}
-              className="margin-input"
-            />
+            <div className="key-input">
+              <TextField
+                onChange={(_, value) => onKeyInputChange(value)}
+                hintText="Uber API Key"
+                errorText={keyInputErrorText}
+                className="margin-input"
+              />
+              <a onClick={showHowToGetKey}>how to get key?</a>
+            </div>
           )}
           {startLocation ? (
             <RaisedButton

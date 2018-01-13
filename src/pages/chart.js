@@ -10,6 +10,7 @@ import {
 } from 'recharts'
 
 import ChartNavbar from '../components/chart-navbar'
+import PersonalInfo from '../components/personal-info'
 import { connectTo } from '../utils/generic'
 import * as actions from '../actions'
 
@@ -37,6 +38,7 @@ export default connectTo(
             <Line type="monotone" dataKey="price" stroke="#8884d8" />
           </LineChart>
         </ResponsiveContainer>
+        <PersonalInfo />
       </div>
     )
   }

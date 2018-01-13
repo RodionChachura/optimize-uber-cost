@@ -125,10 +125,18 @@ export default createReducer(
         requestsHistory
       }
     },
-    [a.onChangeInfoTab]: (state, activeInfoTab) => ({ ...state, activeInfoTab })
+    [a.onChangeInfoTab]: (state, activeInfoTab) => ({
+      ...state,
+      activeInfoTab
+    }),
+    [a.showHowToGetKey]: state => ({
+      ...state,
+      page: 'Info',
+      activeInfoTab: 'apiKey'
+    })
   },
   {
-    page: 'Start',
+    page: 'Info',
     keyInputErrorText: '',
     rideErrorText: '',
     startLocation: undefined,

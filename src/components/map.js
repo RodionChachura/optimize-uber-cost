@@ -32,11 +32,11 @@ export default class Map extends React.Component {
 
     return (
       <ReactMapGL className="map-component" {...mapProps} ref="reactMap">
-        <Marker {...startCoordinates} offsetLeft={-20} offsetTop={-10}>
+        <Marker {...startCoordinates}>
           <i className="fa fa-map-marker fa-4x fa-inverse" aria-hidden="true" />
         </Marker>
         {startLocation ? (
-          <Marker {...endCoordinates} offsetLeft={-20} offsetTop={-10}>
+          <Marker {...endCoordinates}>
             <i className="fa fa-map-marker fa-4x" aria-hidden="true" />
           </Marker>
         ) : null}

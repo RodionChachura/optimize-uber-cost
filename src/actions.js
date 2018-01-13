@@ -27,3 +27,4 @@ export const uberEstimationRequestFailed = createAction()
 
 export const requestToUberMade = createAction()
 export const onChangeInfoTab = createAction()
+export const showHowToGetKey = createAction()
