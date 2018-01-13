@@ -61,25 +61,14 @@ html {
     grid-column: 1;
     grid-row: 1;
   }
-
 }
 
-.margin-button {
-  margin: $classic-margin;
-}
-.margin-input {
+.classic-margin {
   margin: $classic-margin;
 }
 
 .error {
   color: red;
-}
-
-.slider-line {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
 }
 
 .chart {

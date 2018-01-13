@@ -3,7 +3,7 @@ import Slider from 'material-ui/Slider'
 import { MAX_REQUEST_IN_HOUR } from '../constants/uber'
 
 export default ({ waitingTime, onWaitingSliderChange }) => (
-  <div className="margin-input">
+  <div className="classic-margin">
     <p>Waiting time: {waitingTime} min</p>
     <Slider
       style={{ width: '100%' }}

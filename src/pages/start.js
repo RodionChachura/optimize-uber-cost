@@ -64,13 +64,12 @@ export default connectTo(
     return (
       <div className="start page">
         <div className="one-half">
-          {/* <h1>Uber cost optimizer</h1> */}
           {apiKey ? (
             <RaisedButton
               primary
               onClick={onUpdateApiKeyClick}
               label="Update API key"
-              className="margin-button"
+              className="classic-margin"
             />
           ) : (
             <div className="key-input">
@@ -88,14 +87,14 @@ export default connectTo(
               secondary
               onClick={searchStartLocation}
               label="Change Start Location"
-              className="margin-button"
+              className="classic-margin"
             />
           ) : (
             <RaisedButton
               primary
               onClick={useAsStartLocation}
               label="Use As Start Location"
-              className="margin-button"
+              className="classic-margin"
             />
           )}
           {startLocation && endLocation ? (
@@ -103,14 +102,14 @@ export default connectTo(
               secondary
               onClick={searchEndLocation}
               label="Change End Location"
-              className="margin-button"
+              className="classic-margin"
             />
           ) : startLocation ? (
             <RaisedButton
               primary
               onClick={useAsEndLocation}
               label="Use As End Location"
-              className="margin-button"
+              className="classic-margin"
             />
           ) : null}
           {startLocation && endLocation ? (
@@ -120,7 +119,7 @@ export default connectTo(
             <RaisedButton
               onClick={lookForCost}
               label="Look for cost"
-              className="margin-button"
+              className="classic-margin"
             />
           ) : startLocation && endLocation && apiKey && rideErrorText ? (
             <p className="error">{rideErrorText}</p>

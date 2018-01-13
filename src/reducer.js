@@ -136,7 +136,7 @@ export default createReducer(
     })
   },
   {
-    page: 'Info',
+    page: 'Map',
     keyInputErrorText: '',
     rideErrorText: '',
     startLocation: undefined,

@@ -3,10 +3,11 @@ import RaisedButton from 'material-ui/RaisedButton'
 
 const priceColor = prices => {
   const best = Math.min(...prices)
+  const worst = Math.max(...prices)
   const now = prices.last_()
-  let ratio = 1 - best / now
-  ratio = ratio < 0 ? 0 : ratio > 1 ? 1 : ratio
+  const ratio = now === best ? 0 : now === worst ? 1 : now - best / worst - best
   const hue = ((1 - ratio) * 120).toString(10)
+
   return `hsl(${hue},100%,50%)`
 }
 

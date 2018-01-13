@@ -54,6 +54,7 @@ export default class Map extends React.Component {
   }
   componentDidUpdate() {
     const { onMapUpdate, startLocation, endLocation } = this.props
+
     if (startLocation && endLocation && this.map) {
       const locations = [startLocation, endLocation]
       const sortedByLat = _.sortBy(locations, 'latitude')
@@ -64,7 +65,7 @@ export default class Map extends React.Component {
       const maxLong = sortedByLong[sortedByLong.length - 1].longitude
       const minLong = sortedByLong[0].longitude
       this.map.fitBounds([[minLong, minLat], [maxLong, maxLat]], {
-        padding: 40
+        padding: 80
       })
       this.map.on('moveend', () =>
         onMapUpdate({
