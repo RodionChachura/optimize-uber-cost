@@ -63,7 +63,7 @@ export default connectTo(
     return (
       <div className="start page">
         <div className="one-half">
-          <h1>Uber cost optimizer</h1>
+          {/* <h1>Uber cost optimizer</h1> */}
           {apiKey ? (
             <RaisedButton
               primary

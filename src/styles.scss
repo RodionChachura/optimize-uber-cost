@@ -73,6 +73,7 @@ html {
 .chart {
   margin: 0 50px;
   flex-direction: column;
+  overflow:hidden;
   .chart-navbar {
     display: flex;
     flex-direction: row;
