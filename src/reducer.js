@@ -2,6 +2,35 @@ import { createReducer } from 'redux-act'
 import * as a from './actions'
 import { MAP_OPTIONS } from './constants/map'
 import { MAX_REQUEST_IN_HOUR } from './constants/uber'
+import { calcSecondsLeft } from './utils/api'
+
+const requestsHistory = localStorage.getItem('requestsHistory')
+  ? JSON.parse(localStorage.getItem('requestsHistory'))
+  : []
+
+const DEFAULT_STATE = {
+  page: calcSecondsLeft(requestsHistory) < 1 ? 'Start' : 'Info',
+  keyInputErrorText: '',
+  rideErrorText: '',
+  startLocation: undefined,
+  endLocation:
+    localStorage.getItem('endLocation') &&
+    JSON.parse(localStorage.getItem('endLocation')),
+
+  apiKey: localStorage.getItem('apiKey'),
+  waitingTime: parseInt(localStorage.getItem('waitingTime'), 10) || 60,
+  startLocationGeoSearch: true,
+
+  height: window.innerHeight,
+  width: window.innerWidth * 0.7,
+  zoom: MAP_OPTIONS.zoom,
+  latitude: MAP_OPTIONS.latitude,
+  longitude: MAP_OPTIONS.longitude,
+  currency: '',
+  prices: [],
+  requestsHistory,
+  activeInfoTab: 'about'
+}
 
 export default createReducer(
   {
@@ -103,12 +132,13 @@ export default createReducer(
         return {
           ...state,
           page: 'Start',
-          rideErrorText: error
+          rideErrorText: error.message
         }
       } else if (status === 429) {
         return {
           ...state,
-          page: 'Limit'
+          page: 'Info',
+          activeInfoTab: 'about'
         }
       }
     },
@@ -135,29 +165,5 @@ export default createReducer(
       activeInfoTab: 'apiKey'
     })
   },
-  {
-    page: 'Start',
-    keyInputErrorText: '',
-    rideErrorText: '',
-    startLocation: undefined,
-    endLocation:
-      localStorage.getItem('endLocation') &&
-      JSON.parse(localStorage.getItem('endLocation')),
-
-    apiKey: localStorage.getItem('apiKey'),
-    waitingTime: parseInt(localStorage.getItem('waitingTime'), 10) || 60,
-    startLocationGeoSearch: true,
-
-    height: window.innerHeight,
-    width: window.innerWidth * 0.7,
-    zoom: MAP_OPTIONS.zoom,
-    latitude: MAP_OPTIONS.latitude,
-    longitude: MAP_OPTIONS.longitude,
-    currency: '',
-    prices: [],
-    requestsHistory: localStorage.getItem('requestsHistory')
-      ? JSON.parse(localStorage.getItem('requestsHistory'))
-      : [],
-    activeInfoTab: 'about'
-  }
+  DEFAULT_STATE
 )

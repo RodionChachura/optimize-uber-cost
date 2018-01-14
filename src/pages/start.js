@@ -77,7 +77,7 @@ export default connectTo(
                 onChange={(_, value) => onKeyInputChange(value)}
                 hintText="Uber API Key"
                 errorText={keyInputErrorText}
-                className="margin-input"
+                className="classic-margin"
               />
               <a onClick={showHowToGetKey}>how to get key?</a>
             </div>

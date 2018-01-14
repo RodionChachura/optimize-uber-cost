@@ -5,9 +5,7 @@ import { Tabs, Tab } from 'material-ui/Tabs'
 import PersonalInfo from '../components/personal-info'
 import { connectTo } from '../utils/generic'
 import * as actions from '../actions'
-
-const calcSecondsLeft = requestsHistory =>
-  requestsHistory.length === 0 ? (Date.now() - requestsHistory[0]) / 1000 : 0
+import { calcSecondsLeft } from '../utils/api'
 
 export default connectTo(
   state => state,
@@ -80,7 +78,9 @@ export default connectTo(
       clearInterval(this.interval)
     }
     tick = () => {
-      this.setState({ secondsLeft: calcSecondsLeft(this.props) })
+      this.setState({
+        secondsLeft: calcSecondsLeft(this.props.requestsHistory)
+      })
     }
   }
 )
