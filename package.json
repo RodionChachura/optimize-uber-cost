@@ -105,8 +105,7 @@
       "web.jsx",
       "jsx",
       "node"
-    ],
-    "setupTestFrameworkScriptFile": "./src/setupTests.js"
+    ]
   },
   "babel": {
     "presets": [

@@ -16,7 +16,6 @@ const DEFAULT_STATE = {
   endLocation:
     localStorage.getItem('endLocation') &&
     JSON.parse(localStorage.getItem('endLocation')),
-
   apiKey: localStorage.getItem('apiKey'),
   waitingTime: parseInt(localStorage.getItem('waitingTime'), 10) || 60,
   startLocationGeoSearch: true,
