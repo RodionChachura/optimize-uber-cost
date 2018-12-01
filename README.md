@@ -1,12 +1,22 @@
-# [Optimize Uber ride](https://rodionchachura.github.io/optimize-uber-cost/)
+# optimize-uber-cost(not working after Uber API update 😞)
+
+> 
 ![alt text](https://cdn-images-1.medium.com/max/1100/1*NmYadaV8gUFAjFX1KaG5Xw.jpeg)
 
-[Medium article](https://medium.com/@geekrodion/optimizing-uber-cost-with-react-52e007fcda4b)
+## [Demo](https://rodionchachura.github.io/optimize-uber-cost/)
 
-run locally: <br />
-$ git clone https://github.com/RodionChachura/optimize-uber-cost.git <br />
-$ cd optimize-uber-cost <br />
-$ npm install <br />
-$ echo 'REACT_APP_MAPBOX_TOKEN=<YOUR_MAPBOX_KEY>' >> .env <br />
-$ npm run <br />
+## Run locally
+```bash
+$ git clone https://github.com/RodionChachura/optimize-uber-cost.git
+$ cd optimize-uber-cost
+$ npm install
+$ echo 'REACT_APP_MAPBOX_TOKEN=<YOUR_MAPBOX_KEY>' >> .env
+$ npm run
+```
+
+## [Story on Medium](https://rodionchachura.github.io/optimize-uber-cost/)
+
+## License
+
+MIT © [RodionChachura](https://geekrodion.com)
 
